@@ -37,7 +37,7 @@ const CaseDetail: React.FC = () => {
 
     const fetchCase = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/cases/${id}`);
+            const res = await axios.get(`http://legal-system.apps.openshift-01.akaza.lk:5000/cases/${id}`);
             setCaseData(res.data);
         } catch (error) {
             console.error('Failed to fetch case', error);
@@ -48,7 +48,7 @@ const CaseDetail: React.FC = () => {
 
     const fetchLegalOfficers = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/users/legal-officers');
+            const res = await axios.get('http://legal-system.apps.openshift-01.akaza.lk:5000/users/legal-officers');
             setLegalOfficers(res.data);
         } catch (error) {
             console.error('Failed to fetch LOs');
@@ -59,7 +59,7 @@ const CaseDetail: React.FC = () => {
         if (!confirm('Are you sure you want to submit the Initial Document for approval?')) return;
         setActionLoading(true);
         try {
-            await axios.post(`http://localhost:5000/cases/${id}/submit`);
+            await axios.post(`http://legal-system.apps.openshift-01.akaza.lk:5000/cases/${id}/submit`);
             fetchCase();
         } catch (error) {
             alert('Failed to submit case');
@@ -75,7 +75,7 @@ const CaseDetail: React.FC = () => {
         }
         setActionLoading(true);
         try {
-            await axios.post(`http://localhost:5000/cases/${id}/review`, { action, remarks });
+            await axios.post(`http://legal-system.apps.openshift-01.akaza.lk:5000/cases/${id}/review`, { action, remarks });
             setRemarks('');
             fetchCase();
         } catch (error) {
@@ -89,7 +89,7 @@ const CaseDetail: React.FC = () => {
         if (!confirm(loId ? 'Assign this case to selected Legal Officer?' : 'Pick this case for yourself?')) return;
         setActionLoading(true);
         try {
-            await axios.post(`http://localhost:5000/cases/${id}/assign`, { assignedLoId: loId });
+            await axios.post(`http://legal-system.apps.openshift-01.akaza.lk:5000/cases/${id}/assign`, { assignedLoId: loId });
             fetchCase();
             alert('Assignment successful');
         } catch (error: any) {
@@ -107,7 +107,7 @@ const CaseDetail: React.FC = () => {
 
         setActionLoading(true);
         try {
-            await axios.post(`http://localhost:5000/cases/${id}/change-type`, { newType: newCaseType });
+            await axios.post(`http://legal-system.apps.openshift-01.akaza.lk:5000/cases/${id}/change-type`, { newType: newCaseType });
             setIsEditingType(false);
             fetchCase();
             alert('Case type change request submitted to Supervisor');
@@ -121,7 +121,7 @@ const CaseDetail: React.FC = () => {
     const handleReviewChangeRequest = async (changeId: string, action: 'APPROVE' | 'REJECT') => {
         setActionLoading(true);
         try {
-            await axios.post(`http://localhost:5000/cases/changes/${changeId}/review`, { action });
+            await axios.post(`http://legal-system.apps.openshift-01.akaza.lk:5000/cases/changes/${changeId}/review`, { action });
             fetchCase();
         } catch (error: any) {
             alert(error.response?.data?.message || 'Failed to process request');
@@ -133,7 +133,7 @@ const CaseDetail: React.FC = () => {
     const handleUpdateMetadata = async () => {
         setActionLoading(true);
         try {
-            await axios.put(`http://localhost:5000/cases/${id}/metadata`, { metadata: editMetadata });
+            await axios.put(`http://legal-system.apps.openshift-01.akaza.lk:5000/cases/${id}/metadata`, { metadata: editMetadata });
             setIsEditingMetadata(false);
             fetchCase();
         } catch (error: any) {
@@ -159,7 +159,7 @@ const CaseDetail: React.FC = () => {
         formData.append('category', docCategory);
 
         try {
-            await axios.post(`http://localhost:5000/cases/${id}/documents`, formData, {
+            await axios.post(`http://legal-system.apps.openshift-01.akaza.lk:5000/cases/${id}/documents`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             setDocFile(null);
@@ -350,7 +350,7 @@ const CaseDetail: React.FC = () => {
                                     </div>
                                 </div>
                                 <a
-                                    href={`http://localhost:5000/${doc.filePath}`}
+                                    href={`http://legal-system.apps.openshift-01.akaza.lk:5000/${doc.filePath}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded"
