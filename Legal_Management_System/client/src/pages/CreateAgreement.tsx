@@ -78,7 +78,7 @@ const CreateAgreement: React.FC = () => {
         data.append('document', file);
 
         try {
-            await axios.post('http://localhost:5000/agreements', data, {
+            await axios.post('http://legal-system.apps.openshift-01.akaza.lk:5000/agreements', data, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             navigate('/agreements');
