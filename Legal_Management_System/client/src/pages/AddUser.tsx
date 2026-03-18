@@ -29,7 +29,7 @@ const AddUser: React.FC = () => {
 
     const fetchUsers = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/users');
+            const res = await axios.get('http://legal-system.apps.openshift-01.akaza.lk:5000/users');
             setUsers(res.data);
         } catch (err) {
             console.error('Failed to fetch users', err);
@@ -80,7 +80,7 @@ const AddUser: React.FC = () => {
         setError('');
 
         try {
-            await axios.post('http://localhost:5000/users', {
+            await axios.post('http://legal-system.apps.openshift-01.akaza.lk:5000/users', {
                 name: formData.fullName, // Map fullName to name for backend
                 email: formData.email,
                 password: formData.password,
@@ -104,7 +104,7 @@ const AddUser: React.FC = () => {
         }
 
         try {
-            await axios.delete(`http://localhost:5000/users/${id}`);
+            await axios.delete(`http://legal-system.apps.openshift-01.akaza.lk:5000/users/${id}`);
             fetchUsers();
         } catch (err: any) {
             console.error('Failed to delete user', err);
