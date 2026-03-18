@@ -37,7 +37,7 @@ const AgreementDetail: React.FC = () => {
 
     const fetchAgreement = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/agreements/${id}`);
+            const res = await axios.get(`http://legal-system.apps.openshift-01.akaza.lk:5000/agreements/${id}`);
             setAgreement(res.data);
         } catch (error) {
             console.error('Failed to fetch agreement', error);
@@ -53,7 +53,7 @@ const AgreementDetail: React.FC = () => {
     const handleAddComment = async () => {
         if (!comment.trim()) return;
         try {
-            await axios.post(`http://localhost:5000/agreements/${id}/comments`, { content: comment });
+            await axios.post(`http://legal-system.apps.openshift-01.akaza.lk:5000/agreements/${id}/comments`, { content: comment });
             setComment('');
             fetchAgreement();
         } catch (error) {
@@ -68,7 +68,7 @@ const AgreementDetail: React.FC = () => {
         }
         setActionLoading(true);
         try {
-            await axios.put(`http://localhost:5000/agreements/${id}/status`, { status, remarks });
+            await axios.put(`http://legal-system.apps.openshift-01.akaza.lk:5000/agreements/${id}/status`, { status, remarks });
             setRemarks('');
             fetchAgreement();
         } catch (error) {
@@ -90,7 +90,7 @@ const AgreementDetail: React.FC = () => {
         data.append('type', metaType);
 
         try {
-            await axios.post(`http://localhost:5000/agreements/${id}/versions`, data, {
+            await axios.post(`http://legal-system.apps.openshift-01.akaza.lk:5000/agreements/${id}/versions`, data, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             setShowUploadModal(false);
@@ -107,7 +107,7 @@ const AgreementDetail: React.FC = () => {
 
         setActionLoading(true);
         try {
-            await axios.delete(`http://localhost:5000/agreements/${id}`);
+            await axios.delete(`http://legal-system.apps.openshift-01.akaza.lk:5000/agreements/${id}`);
             navigate('/');
         } catch (error: any) {
             alert(error.response?.data?.message || 'Failed to delete agreement');
@@ -201,7 +201,7 @@ const AgreementDetail: React.FC = () => {
                         <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-100">
                             <h3 className="text-lg font-bold text-gray-900">Document Preview</h3>
                             {latestVersion && (
-                                <a href={`http://localhost:5000/${latestVersion.filePath}`} target="_blank" rel="noreferrer"
+                                <a href={`http://legal-system.apps.openshift-01.akaza.lk:5000/${latestVersion.filePath}`} target="_blank" rel="noreferrer"
                                     className="text-sm font-medium text-blue-600 hover:text-blue-800 flex items-center transition-colors">
                                     <Download className="w-4 h-4 mr-2" /> Download v{latestVersion.versionNumber}
                                 </a>
