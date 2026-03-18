@@ -16,7 +16,7 @@ const AgreementDashboard: React.FC = () => {
     useEffect(() => {
         const fetchStats = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/agreements/stats');
+                const res = await axios.get('http://legal-system.apps.openshift-01.akaza.lk:5000/agreements/stats');
                 if (res.data.counts) {
                     setStats(res.data.counts);
                     setActivities(res.data.activity || []);
