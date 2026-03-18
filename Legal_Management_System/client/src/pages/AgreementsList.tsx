@@ -16,7 +16,7 @@ const AgreementsList: React.FC = () => {
     useEffect(() => {
         const fetchAgreements = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/agreements');
+                const res = await axios.get('http://legal-system.apps.openshift-01.akaza.lk:5000/agreements');
                 setAgreements(res.data);
             } catch (err) {
                 setError('Failed to fetch agreements');
