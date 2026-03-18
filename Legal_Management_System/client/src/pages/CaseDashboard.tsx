@@ -20,7 +20,7 @@ const CaseDashboard: React.FC = () => {
         try {
             const params: any = {};
             if (filterStatus) params.status = filterStatus;
-            const res = await axios.get('http://localhost:5000/cases', { params });
+            const res = await axios.get('http://legal-system.apps.openshift-01.akaza.lk:5000/cases', { params });
             setCases(res.data);
         } catch (error) {
             console.error('Failed to fetch cases', error);
@@ -35,7 +35,7 @@ const CaseDashboard: React.FC = () => {
         }
 
         try {
-            await axios.delete(`http://localhost:5000/cases/${id}`);
+            await axios.delete(`http://legal-system.apps.openshift-01.akaza.lk:5000/cases/${id}`);
             fetchCases(); // Refresh list after deletion
         } catch (error: any) {
             console.error('Failed to delete case', error);
