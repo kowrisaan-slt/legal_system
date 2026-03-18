@@ -13,8 +13,7 @@ const Login: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const API = import.meta.env.VITE_API_URL;
-            const res = await axios.post(`${API}/auth/login`, { email, password });
+            const res = await axios.post('legal-system:5000/auth/login', { email, password });
             login(res.data.token, res.data.user);
             navigate('/modules');
         } catch (err: any) {
