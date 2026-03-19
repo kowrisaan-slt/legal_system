@@ -69,7 +69,7 @@ const CreateCase: React.FC = () => {
         setError('');
 
         try {
-            await axios.post('http://legal-system.apps.openshift-01.akaza.lk:5000/cases', formData);
+            await axios.post('http://legal-system-rojith-test.apps.openshift-01.akaza.lk/cases', formData);
             navigate('/cases');
         } catch (err: any) {
             setError(err.response?.data?.message || 'Failed to create case');
