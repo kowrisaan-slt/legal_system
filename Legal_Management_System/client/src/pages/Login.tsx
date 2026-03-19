@@ -13,7 +13,7 @@ const Login: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const res = await axios.post('172.30.42.15:5000/auth/login', { email, password });
+            const API_URL = import.meta.env.VITE_API_URL;
             login(res.data.token, res.data.user);
             navigate('/modules');
         } catch (err: any) {
