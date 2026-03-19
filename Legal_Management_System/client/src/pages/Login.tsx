@@ -17,7 +17,7 @@ const Login: React.FC = () => {
             login(res.data.token, res.data.user);
             navigate('/modules');
         } catch (err: any) {
-            setError(err.response?.data?.message || 'Login failed');
+            setError(err.response?.data?.message || 'Hi Rojith, Login failed');
         }
     };
 
