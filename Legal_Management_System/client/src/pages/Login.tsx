@@ -13,7 +13,7 @@ const Login: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const API_URL = import.meta.env.VITE_API_URL;
+            const res = await axios.post('http://legal-system.apps.openshift-01.akaza.lk:5000/auth/login', { email, password });
             login(res.data.token, res.data.user);
             navigate('/modules');
         } catch (err: any) {
